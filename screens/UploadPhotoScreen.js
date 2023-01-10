@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Text, View, Button, TouchableOpacity, TextInput, KeyboardAvoidingView, Alert } from 'react-native'
 import React, { useState, useRef } from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
@@ -23,13 +23,30 @@ const UploadPhotoScreen = () => {
     const [image, setImage] = useState('');
 
     const handlePressNext = () => {
-        logData();
-        writeRecipePostData();
-        deleteDataFromStates();
-        navigation.navigate('AddIngredients',{
-            paramKey: uuid,
-        });
-        clearTextInput();
+        if((name != '') && (description != '') && (image != '')){
+            logData();
+            writeRecipePostData();
+            deleteDataFromStates();
+            navigation.navigate('AddStepsScreen',{
+                paramKey: uuid,
+            });
+            clearTextInput();
+        }else{
+            callAlert();
+        }
+        // navigation.navigate('AddStepsScreen',{
+        //     paramKey: uuid,
+        // });
+    }
+
+    const callAlert = () => {
+        Alert.alert(
+            "Error",
+            "One of the fields is empty.",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+        );
     }
 
     function logData(){

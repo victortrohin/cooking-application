@@ -1,7 +1,6 @@
 import { Button, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
 import UploadPhotoScreen from './UploadPhotoScreen';
 import AddIngredientsScreen from './AddIngredientsScreen';
 import AddStepsScreen from './AddStepsScreen';
@@ -19,8 +18,20 @@ const CreateRecipeScreen = () => {
                     headerShown: false,
                 }}
             />
-            <Stack.Screen name='AddIngredients' component={AddIngredientsScreen}/>
-            <Stack.Screen name='AddStepsScreen' component={AddStepsScreen}/>
+            <Stack.Screen 
+                name='AddIngredients' 
+                component={AddIngredientsScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen 
+                name='AddStepsScreen' 
+                component={AddStepsScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
             <Stack.Screen name='OverviewScreen' component={OverviewScreen}/>
         </Stack.Navigator>
   )
