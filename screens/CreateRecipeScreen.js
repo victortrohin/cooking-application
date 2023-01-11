@@ -32,7 +32,13 @@ const CreateRecipeScreen = () => {
                     headerShown: false,
                 }}
             />
-            <Stack.Screen name='OverviewScreen' component={OverviewScreen}/>
+            <Stack.Screen 
+                name='OverviewScreen' 
+                component={OverviewScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
         </Stack.Navigator>
   )
 }

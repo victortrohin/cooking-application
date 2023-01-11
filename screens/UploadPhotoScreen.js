@@ -34,9 +34,7 @@ const UploadPhotoScreen = () => {
         }else{
             callAlert();
         }
-        // navigation.navigate('AddStepsScreen',{
-        //     paramKey: uuid,
-        // });
+        // navigation.navigate('OverviewScreen');
     }
 
     const callAlert = () => {

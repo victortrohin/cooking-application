@@ -77,7 +77,7 @@ const AddIngredients = ({route}) => {
 
         <View style = {styles.buttonsContainer}>
         <TouchableOpacity
-                 style = {styles.nextButton}
+                 style = {[styles.nextButton, {backgroundColor : 'gray'}]}
                  onPress = {() => navigation.goBack()}
             >
                 <MaterialCommunityIcons name='arrow-left-thin' size={28} color='white'/>
