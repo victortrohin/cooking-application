@@ -1,6 +1,7 @@
-import { View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, Alert} from 'react-native';
 import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
 
 
 const RecipePost = ({
@@ -13,6 +14,20 @@ const RecipePost = ({
     steps,
     rating,
 }) => {
+
+    const navigation = useNavigation();
+
+    const handleImageClick = () => {
+        navigation.navigate('ViewDetails',{
+            id: {id},
+            name: {name},
+            shorDescription: {shorDescription},
+            imageUrl: {imgUrl},
+            ingredients: {ingredients},
+            steps: {steps},
+        });
+    }
+
   return (
 
     <View  style = {[styles.container, styles.shadow]}>
@@ -26,7 +41,9 @@ const RecipePost = ({
         </View>
 
         <View>
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={handleImageClick}
+            >
                 <Image
                     source={{
                         uri: imgUrl,

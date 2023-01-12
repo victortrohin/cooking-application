@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity,TextInput, Alert } from 'react-native'
 import React, { useRef, useState } from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useNavigation, useNavigationContainerRef } from '@react-navigation/native';
+import { useNavigation} from '@react-navigation/native';
 import { database } from '../firebase';
 
 const AddIngredients = ({route}) => {
@@ -16,6 +16,11 @@ const AddIngredients = ({route}) => {
     + "Step 2 \nDescribe what should be done in step 2\n" 
     + "Step 3 \nDescribe what should be done in step 3\n"
     + "Step 4 \nDescribe what should be done in step 4\n";
+
+    const handleCancelButton = () => {
+        deleteRecipeData();
+        navigation.goBack();
+    }
 
     const handlePressNext = () => {
         if((stepText != '')){
@@ -60,6 +65,12 @@ const AddIngredients = ({route}) => {
         });
       }
 
+      function deleteRecipeData() {
+          database.ref('recipe_posts/' + route.params.paramKey + '/name').remove();
+          database.ref('recipe_posts/' + route.params.paramKey + '/description').remove();
+          database.ref('recipe_posts/' + route.params.paramKey + '/imageUrl').remove();
+    }
+
   return (
     <View style={styles.container}>
         
@@ -78,7 +89,7 @@ const AddIngredients = ({route}) => {
         <View style = {styles.buttonsContainer}>
         <TouchableOpacity
                  style = {[styles.nextButton, {backgroundColor : 'gray'}]}
-                 onPress = {() => navigation.goBack()}
+                 onPress = {handleCancelButton}
             >
                 <MaterialCommunityIcons name='arrow-left-thin' size={28} color='white'/>
                 <Text style={styles.nextText}>Cancel</Text>

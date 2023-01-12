@@ -47,6 +47,15 @@ const OverviewScreen = ({route}) => {
         writeEmail();
         navigation.replace("TabBottomNavigator");
     }
+    const handleCancelButton = () => {
+        deleteRecipeData();
+        navigation.goBack();
+    }
+
+    function deleteRecipeData() {
+        database.ref('recipe_posts/' + route.params.paramKey + '/ingredient').remove();
+    }  
+
 
   return (
 <ScrollView>
@@ -59,12 +68,23 @@ const OverviewScreen = ({route}) => {
         ingredients = {ingredients}
     />
 
-    <TouchableOpacity
-        style = {[styles.nextButton]}
-        onPress = {handlePressConfirmButton}
-    >
-    <Text style={styles.nextText}>Confirm</Text>
-    </TouchableOpacity>
+    <View style = {styles.buttons}>
+        <TouchableOpacity
+            style = {[styles.nextButton, {backgroundColor: 'gray'}]}
+            onPress = {handleCancelButton}
+        >
+        <Text style={styles.nextText}>Cancel</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+            style = {[styles.nextButton]}
+            onPress = {handlePressConfirmButton}
+        >
+        <Text style={styles.nextText}>Confirm</Text>
+        </TouchableOpacity>
+
+    </View>
+
 </ScrollView>
 
 
@@ -75,7 +95,6 @@ export default OverviewScreen
 
 const styles = StyleSheet.create({
     nextButton:{
-        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
@@ -90,4 +109,9 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         paddingRight: 5,
     },
+    buttons:{
+        flexDirection: 'row',
+        alignSelf: 'center',
+        margin: 10,
+    }
 })

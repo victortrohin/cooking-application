@@ -8,7 +8,7 @@ import HomeScreen from './screens/HomeScreen';
 import CreateRecipeScreen from './screens/CreateRecipeScreen';
 import RecomandationScreen from './screens/RecomandationScreen';
 import ProfileScreen from './screens/ProfileScreen';
-
+import ViewRecipeDetailsScreen from './screens/ViewRecipeDetailsScreen';
 
 
 
@@ -79,6 +79,10 @@ export default function App() {
             options={{
               headerShown: false,
             }}
+          />
+          <Stack.Screen 
+            name="ViewDetails"
+            component={ViewRecipeDetailsScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>

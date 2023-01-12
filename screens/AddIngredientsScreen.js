@@ -17,6 +17,13 @@ const AddIngredients = ({route}) => {
             + "\nIngredient 3 - 700 g\n"
             + "\nIngredient 4 - ceva quantity";
 
+    
+
+    const handleCancelButton = () => {
+        deleteRecipeData();
+        navigation.goBack();
+    }
+
     const handlePressNext = () => {
         if((ingredient != '')){
             logData();
@@ -60,6 +67,10 @@ const AddIngredients = ({route}) => {
         });
       }
 
+      function deleteRecipeData() {
+        database.ref('recipe_posts/' + route.params.paramKey + '/steps').remove();
+      }  
+
   return (
     <View style={styles.container}>
         
@@ -78,7 +89,7 @@ const AddIngredients = ({route}) => {
         <View style = {styles.buttonsContainer}>
         <TouchableOpacity
                  style = {styles.nextButton}
-                 onPress = {() => navigation.goBack()}
+                 onPress = {handleCancelButton}
             >
                 <MaterialCommunityIcons name='arrow-left-thin' size={28} color='white'/>
                 <Text style={styles.nextText}>Cancel</Text>
